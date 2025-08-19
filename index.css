@@ -89,3 +89,18 @@ body {
         transform: translateY(-5px);
     }
 }
+.btn-brown {
+    background-color: #A0522D; /* light brown */
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+  
+  .btn-brown:hover {
+    background-color: #8B4513; /* darker on hover */
+}
