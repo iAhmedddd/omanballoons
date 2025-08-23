@@ -1,85 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Book an adventure - Oman Balloons</title>
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Link to the custom CSS file -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Flight - Oman Balloons</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <style>
+    body {
+      background: linear-gradient(to top, #f9f3ee, #e0d3c0);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .form-section {
+      background-color: #fffaf3;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #A0522D;
+    }
+
+    .btn-brown {
+      background-color: #A0522D;
+      color: white;
+      border: none;
+    }
+
+    .btn-brown:hover {
+      background-color: #8B4513;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Oman Balloons</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item active"><a class="nav-link" href="book.html">Book</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-            </ul>
-        </div>
-    </nav>
+  <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    <h1 class="mb-4">Book Your Flight</h1>
+    <form class="form-section w-100" style="max-width: 600px;">
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Preferred Flight Date</label>
+        <input type="date" class="form-control" id="date" required>
+      </div>
+      <div class="mb-3">
+        <label for="passengers" class="form-label">Number of Passengers</label>
+        <input type="number" class="form-control" id="passengers" min="1" max="20" required>
+      </div>
+      <button type="submit" class="btn btn-brown w-100">Submit Booking</button>
+    </form>
+  </div>
 
-    <!-- Header Section -->
-    <header class="container">
-        <h1 class="text-center my-4">Book an adventure with Oman Balloons</h1>
-    </header>
-
-    <!-- Booking Form Section -->
-    <form id="booking-form">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required>
-        </div>
-        <div class="form-group">
-            <label for="date">Date</label>
-            <input type="date" class="form-control" id="date" required>
-        </div>
-        <div class="form-group">
-            <label for="time">Time</label>
-            <select class="form-control" id="time" required>
-                <option value="">Select a time</option>
-                <option value="6am">6:00 AM</option>
-                <option value="8am">8:00 AM</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="guests">Guests</label>
-            <input type="number" class="form-control" id="guests" min="1" required>
-        </div>
-      
-        <button id="checkout-button" class="btn btn-primary" type="button">Proceed to Payment</button>
-      </form>
-      
-      <script src="https://js.stripe.com/v3/"></script>
-      <script>
-        const stripe = Stripe('YOUR_PUBLISHABLE_KEY'); // Replace this with your real Stripe key
-      
-        document.getElementById('checkout-button').addEventListener('click', async () => {
-          const response = await fetch('https://your-server.com/create-checkout-session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: document.getElementById('name').value,
-              email: document.getElementById('email').value,
-              date: document.getElementById('date').value,
-              time: document.getElementById('time').value,
-              guests: document.getElementById('guests').value
-            })
-          });
-      
-          const session = await response.json();
-          stripe.redirectToCheckout({ sessionId: session.id });
-        });
-      </script>
-
-    <!-- Footer Section -->
-    <footer class="container text-center my-4">
-        <p>© 2025 Oman Balloons</p>
-    </footer>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
