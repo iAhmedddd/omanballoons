@@ -1,77 +1,135 @@
+
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Your Flight - Oman Balloons</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom Styles -->
-  <style>
-    body {
-      background: linear-gradient(to top, #f9f3ee, #e0d3c0);
-      font-family: 'Segoe UI', sans-serif;
-    }
+<meta charset="utf-8"/>
+<title>Book Your Flight</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #fef9f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    .form-section {
-      background-color: #fffaf3;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+        .form-container {
+            max-width: 650px;
+            background-color: #fffaf5;
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(139, 76, 36, 0.15);
+            border: 1px solid #e6d5c3;
+        }
 
-    h1 {
-      color: #A0522D;
-    }
+        h2 {
+            color: #8b4c24;
+            font-weight: bold;
+        }
 
-    .btn-brown {
-      background-color: #A0522D;
-      color: white;
-      border: none;
-    }
+        label {
+            font-weight: 600;
+            color: #5a3720;
+        }
 
-    .btn-brown:hover {
-      background-color: #8B4513;
-    }
-  </style>
-</head>
+        .btn-primary {
+            background-color: #8b4c24;
+            border-color: #8b4c24;
+        }
 
+        .btn-primary:hover {
+            background-color: #a35a2f;
+            border-color: #a35a2f;
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet"/><style>
+    body, h1, h2, h3, h4, h5, h6, label, input, select, button {
+        font-family: 'Poppins', sans-serif !important;
+    }
+</style></head>
 <body>
-  <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
-    <h1 class="mb-4">Book Your Flight</h1>
-    <form class="form-section w-100" style="max-width: 600px;">
-      <div class="mb-3">
-        <label for="name" class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-      </div>
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone Number</label>
-        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-      </div>
-      <div class="mb-3">
-        <label for="date" class="form-label">Preferred Flight Date</label>
-        <input type="date" class="form-control" id="date" required>
-      </div>
-      <div class="mb-3">
-        <label for="passengers" class="form-label">Number of Passengers</label>
-        <input type="number" class="form-control" id="passengers" min="1" max="20" required>
-      </div>
-      <button type="submit" class="btn btn-brown w-100">Submit Booking</button>
-    </form>
-  </div>
+<div class="container">
+<div class="form-container">
+<h2 class="text-center mb-4">Book Your Flight</h2>
+<form>
+<div class="mb-3">
+<label class="form-label" for="name">Name:</label>
+<input class="form-control" id="name" placeholder="Your full name" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label" for="people">Number of People:</label>
+<input class="form-control" id="people" min="1" placeholder="e.g., 2" type="number"/>
+</div>
+<div class="mb-3">
+<label class="form-label" for="date">Date:</label>
+<input class="form-control" id="date" type="date"/>
+</div>
+<div class="mb-3">
+<label class="form-label" for="email">Email:</label>
+<input class="form-control" id="email" placeholder="your@email.com" type="email"/>
+</div>
+<div class="mb-3">
+<label class="form-label" for="phone">Phone Number:</label>
+<input class="form-control" id="phone" placeholder="+968..." type="tel"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Need accommodation?</label><br/>
+<div class="form-check form-check-inline">
+<input class="form-check-input" id="accommodationYes" name="accommodation" type="radio" value="yes"/>
+<label class="form-check-label" for="accommodationYes">Yes</label>
+</div>
+<div class="form-check form-check-inline">
+<input class="form-check-input" id="accommodationNo" name="accommodation" type="radio" value="no"/>
+<label class="form-check-label" for="accommodationNo">No</label>
+</div>
+</div>
+<div id="accommodationOptions" style="display:none;">
+<div class="mb-3">
+<label class="form-label" for="camp">Choose Camp:</label>
+<select class="form-select" id="camp">
+<option value="">-- Select --</option>
+<option value="Stars Gate Camp">Stars Gate Camp</option>
+<option value="Arabian Oryx Camp">Arabian Oryx Camp</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label" for="rooms">Number of Rooms:</label>
+<input class="form-control" id="rooms" min="1" placeholder="e.g., 1" type="number"/>
+</div>
+</div>
+<div id="noAccommodationField" style="display:none;">
+<div class="mb-3">
+<label class="form-label" for="stayLocation">Where are you staying?</label>
+<input class="form-control" id="stayLocation" placeholder="Hotel, camp, etc." type="text"/>
+</div>
+</div>
+<div class="text-center">
+<button class="btn btn-primary" type="submit">Submit Booking</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const yesRadio = document.getElementById('accommodationYes');
+        const noRadio = document.getElementById('accommodationNo');
+        const accommodationOptions = document.getElementById('accommodationOptions');
+        const noAccommodationField = document.getElementById('noAccommodationField');
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        yesRadio.addEventListener('change', () => {
+            accommodationOptions.style.display = 'block';
+            noAccommodationField.style.display = 'none';
+        });
+
+        noRadio.addEventListener('change', () => {
+            accommodationOptions.style.display = 'none';
+            noAccommodationField.style.display = 'block';
+        });
+    });
+</script>
 </body>
-
-<!-- Footer Section -->
-    <footer class="container text-center my-4">
-        <p>© 2025 Oman Balloons</p>
-    </footer>
-
 </html>
