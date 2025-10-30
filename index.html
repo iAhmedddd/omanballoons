@@ -2,126 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Omanballoons</title>
+  <title>Oman Balloons Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    .header-text {
-      font-size: 3em;
-      color: #8b4c24;
-      text-align: center;
-      margin-top: 80px;
-      font-weight: 700;
-    }
-
-    .background-img {
-      position: absolute;
-      z-index: -1;
-      width: 100%;
-      height: 100%;
-      background: url('omanballoons_transparent.png') no-repeat center center;
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('omanb.JPG') no-repeat center center fixed;
       background-size: cover;
-      opacity: 0.3;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .btn-brown {
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 30px 40px;
+      border-radius: 12px;
+      max-width: 420px;
+      margin-left: 60px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #8b4c24;
+      font-weight: bold;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    label {
+      color: #5a3720;
+      font-weight: 600;
+    }
+
+    .btn-primary {
       background-color: #8b4c24;
-      color: white;
-      padding: 12px 25px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 6px;
+      border-color: #8b4c24;
+      width: 100%;
+      font-weight: 600;
     }
 
-    .btn-brown:hover {
+    .btn-primary:hover {
       background-color: #a35e30;
-      color: #fff;
     }
 
-    @media (max-width: 576px) {
-      .header-text {
-        font-size: 2em;
-        margin-top: 60px;
+    @media (max-width: 768px) {
+      body {
+        justify-content: center;
       }
-
-      .btn-brown {
-        font-size: 1rem;
-        padding: 10px 20px;
+      .form-container {
+        margin: 0;
       }
     }
   </style>
 </head>
+
 <body>
-
-  <div class="background-img"></div>
-  <div id="vanta-bg"></div>
-
-  <div class="container text-center">
-    <h1 class="header-text">Omanballoons</h1>
-    <h3 class="coming-soon mt-4">coming soon<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h3>
-    <div class="mt-3">
-      <button class="btn btn-brown" data-bs-toggle="modal" data-bs-target="#welcomeModal">Book Your Flight</button>
+  <div class="form-container">
+    <h2>Book Your Flight</h2>
+    <form id="bookingForm">
+      <div class="mb-3">
+        <label for="people" class="form-label">How many people:</label>
+        <input type="number" id="people" class="form-control" placeholder="e.g., 2" min="1" required>
+      </div>
+      <div class="mb-3">
+        <label for="names" class="form-label">Names:</label>
+        <input type="text" id="names" class="form-control" placeholder="Full names" required>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone:</label>
+        <input type="tel" id="phone" class="form-control" placeholder="+968..." required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Date of fly:</label>
+        <input type="date" id="date" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div id="confirmationMessage" class="text-center mt-4 fw-bold text-success" style="display:none;">
+      Thank you! We will contact you soon.
     </div>
   </div>
 
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Vanta.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
   <script>
-    VANTA.CLOUDS({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      backgroundColor: 0xffffff,
-      skyColor: 0x68b8d7,
-      cloudColor: 0xadc1de,
-      cloudShadowColor: 0x183550,
-      sunColor: 0xff9919,
-      sunGlareColor: 0xff6633,
-      sunlightColor: 0xff9933,
-      speed: 1
-    })
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = {
+        people: document.getElementById('people').value,
+        names: document.getElementById('names').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        date: document.getElementById('date').value
+      };
+
+      // --- EMAIL HANDLER ---
+      const mailtoLink = `mailto:fly@omanballoons.om?subject=New Balloon Booking&body=` +
+        `People: ${formData.people}%0D%0A` +
+        `Names: ${formData.names}%0D%0A` +
+        `Phone: ${formData.phone}%0D%0A` +
+        `Email: ${formData.email}%0D%0A` +
+        `Date of Flight: ${formData.date}`;
+
+      // Open email client to send
+      window.location.href = mailtoLink;
+
+      // Show confirmation message
+      document.getElementById('bookingForm').style.display = 'none';
+      document.getElementById('confirmationMessage').style.display = 'block';
+    });
   </script>
 
-  <!-- Modal HTML -->
-  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-light">
-          <h5 class="modal-title" id="welcomeModalLabel">Welcome to Oman Balloons</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" style="font-size: 1rem; line-height: 1.6;">
-          <p><strong>Oman Balloons</strong> is the leading hot air balloon company in Oman, proudly 100% Omani-owned, in partnership with <strong>Pasha Balloons</strong>—one of the world’s top names in hot air balloon manufacturing and operations.</p>
-          <p>We take you on a breathtaking adventure over Oman’s rare golden sands, offering unforgettable views and memories that last a lifetime.</p>
-          <h6 class="mt-3"><strong>Important to Know</strong></h6>
-          <ul>
-            <li>Our flights depend on nature: a little wind and no rain are needed.</li>
-            <li>If your flight is cancelled due to weather, you will receive a 100% refund – promptly and hassle-free.</li>
-            <li>The full experience lasts around 1 hour and 15 minutes.</li>
-          </ul>
-          <h6 class="mt-3"><strong>Location</strong></h6>
-          <p>📍 Sultanate of Oman<br>✨ Stars Gate Camp, Bidiyah – soaring high above the golden sands.</p>
-          <p><strong>This day will be remembered for a lifetime.</strong><br>👉 Start your journey now!</p>
-        </div>
-        <div class="modal-footer">
-          <a href="book.html" class="btn btn-brown">Continue to Booking</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
